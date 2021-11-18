@@ -5,23 +5,25 @@ using namespace std;
 class employee {
     int empno;
     char ename[20];
-    float basic, netpay, da, hra;
-    float calculate(){
+    float basic, netpay, da, hra, da_p, hra_p;
+    float calculate() {
+	da=basic*da_p/100;
+	hra=basic*hra_p/100;
         netpay=basic+da+hra;
         return (netpay);
     }
 
     public:
-    void havedata(){
+    void havedata() {
         cout<<endl<<"Enter the employee number: "; cin>>empno;
         cout<<"Enter the name of employee: "; cin>>ename;     
         cout<<"Enter Basic Pay: "; cin>>basic;
-        cout<<"Enter Dearness Allowance: "; cin>>da;
-        cout<<"Enter House-Rent Allowance: "; cin>>hra;
+        cout<<"Enter Dearness Allowance (%): "; cin>>da_p;
+        cout<<"Enter House-Rent Allowance (%): "; cin>>hra_p;
         calculate();
     }
 
-    void dispdata(){
+    void dispdata() {
         cout<<setw(25)<<"Employee name: "<<setw(5)<<ename<<endl;
         cout<<setw(25)<<"Employee number: "<<setw(5)<<empno<<endl;
         cout<<setw(25)<<"-----------------------------------"<<endl;
@@ -34,7 +36,7 @@ class employee {
     }
 };
 
-int main(){
+int main() {
     system("clear");
     employee e1;
     int op;
@@ -42,7 +44,7 @@ int main(){
     cout<<"Employee database"<<endl<<endl;
     cout<<"1. Enter employee details"<<endl<<"2. Display employee details"<<endl<<"3. Exit";
     cout<<endl<<"Choice [1/2/3]: "; cin>>op;
-    switch(op){
+    switch(op) {
         case 1:
         e1.havedata();
         goto start;
